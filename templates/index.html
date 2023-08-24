@@ -5,22 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Crack Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function selectDesign(design) {
+            // Uncheck other designs
+            const designs = document.querySelectorAll('.design-option input');
+            designs.forEach(d => d.checked = false);
+
+            // Check the selected design
+            const selectedDesign = document.querySelector(`.design-option input[value="${design}"]`);
+            selectedDesign.checked = true;
+
+            // Submit the form to trigger the post request
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Enter Your Number</h1>
 
         <form action="/" method="post">
-            <input type="number" name="number" placeholder="Enter a 3-digit number">
+            <input type="number" name="number" placeholder="Enter a 3-digit number" value="{{ default_number }}">
+            <h2>Select Design:</h2>
+            <div class="design-options">
+              <div class="design-option" onclick="selectDesign('design1');">
+                <input type="checkbox" name="design" value="design1" checked>
+                <img src="{{ url_for('static', filename='designs/design1.png') }}" alt="Design 1">
+                Design 1
+              </div>
+              <div class="design-option" onclick="selectDesign('design2');">
+                <input type="checkbox" name="design" value="design2">
+                <img src="{{ url_for('static', filename='designs/design2.png') }}" alt="Design 2">
+                Design 2
+              </div>
+              <div class="design-option" onclick="selectDesign('design3');">
+                <input type="checkbox" name="design" value="design3">
+                <img src="{{ url_for('static', filename='designs/design3.png') }}" alt="Design 3">
+                Design 3
+              </div>
+            </div>
             <button type="submit">Generate Puzzle</button>
         </form>
 
+        {% if usednumber %}
+        <h2>Solution: {{usednumber}}</h2>
+        {% endif %}
         {% if hints %}
         <ul class="hints">
-            {% for hint in hints %}
-            <li>{{ hint }}</li>
+            {% for key, value in hints.items() %}
+            <li>{{ key }} - {{ value }}</li>
             {% endfor %}
         </ul>
+        {% endif %}
+        {% if image_path %}
+            <img src="{{ image_path }}" alt="Generated Image" class="hint-image">
         {% endif %}
     </div>
 </body>

@@ -57,4 +57,30 @@ button:hover {
   border-left: 4px solid #007BFF;
 }
 
+.hint-image {
+  width: 100%;
+  height: auto;
+}
+
+.design-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+.design-option {
+  background-size: cover;
+  background-position: center;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.design-option img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.design-option input[type="checkbox"] {
+  margin-right: 10px;
+}
 /* Add more styles as needed */
