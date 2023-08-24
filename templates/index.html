@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crack the Code Generator</title>
+</head>
+<body>
+
+<h1>Crack the Code Generator</h1>
+
+<form method="post">
+    <label>Enter 3-digit number:</label>
+    <input type="text" name="number" value="573" />
+    <input type="submit" value="Generate Hints">
+</form>
+
+{% if hints %}
+    <ul>
+    {% for hint in hints %}
+        <li>{{ hint }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>
