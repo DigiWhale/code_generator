@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import random
+import os
 
 app = Flask(__name__)
 
@@ -66,4 +67,4 @@ def index():
     return render_template('index.html', hints=hints)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)  # <-- Adjusted this line
