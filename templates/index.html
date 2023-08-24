@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Crack the Code Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Crack Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <div class="container">
+        <h1>Enter Your Number</h1>
 
-<h1>Crack the Code Generator</h1>
+        <form action="/" method="post">
+            <input type="number" name="number" placeholder="Enter a 3-digit number">
+            <button type="submit">Generate Puzzle</button>
+        </form>
 
-<form method="post">
-    <label>Enter 3-digit number:</label>
-    <input type="text" name="number" value="573" />
-    <input type="submit" value="Generate Hints">
-</form>
-
-{% if hints %}
-    <ul>
-    {% for hint in hints %}
-        <li>{{ hint }}</li>
-    {% endfor %}
-    </ul>
-{% endif %}
-
+        {% if hints %}
+        <ul class="hints">
+            {% for hint in hints %}
+            <li>{{ hint }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 </body>
 </html>
